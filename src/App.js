@@ -1,23 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import {Link, Route, Switch} from 'react-router-dom';
+import {Landing, Checking, Savings} from './components';
+import './index.css';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="app-container">
+      <header>
+        <Link to="/">Home</Link>
+        <div className="navs">
+          <Link to="/checking">Checking</Link>
+          <Link to="/savings">Savings</Link>
+        </div>
+
       </header>
+
+      <main>
+        <Switch>
+          <Route exact path="/">
+            <Landing />
+          </Route>
+          <Route exact path="/checking">
+            <Checking />
+          </Route>
+          <Route exact path="/savings">
+            <Savings />
+          </Route>
+        </Switch>
+      </main>
+
+      <footer>
+      <p className="copyright">
+            Copyright &copy;
+            {new Date().getFullYear()}
+            <br />
+            ACME Bank
+      </p>
+      </footer>
     </div>
   );
 }
